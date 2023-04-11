@@ -1,10 +1,13 @@
 import "./DailyWorkoutTable.css";
 
-const DailyWorkoutTable = () => (
+const DailyWorkoutTable = ({dailyexercises}) => (
 
     <>
-    <div className="dailyWorkoutTitle">DAILY WORKOUT PLANNER</div>
-    <div className="date">{ new Date().toString().slice(4,15) }</div>
+    <div className="titleAndDate">
+      <div className="dailyWorkoutTitle">DAILY WORKOUT PLANNER</div>
+      <div className="date">{ new Date().toString().slice(4,15) }</div>
+    </div>
+    
 
     <div className="DailyWorkoutTable">
     <table>
@@ -21,23 +24,24 @@ const DailyWorkoutTable = () => (
         </tr>
       </thead>
       <tbody>
-
-          <tr >
-            <td>exercise.name</td>
-            <td>exercise.id</td>
-            <td>exercise.target</td>
-            <td>exercise.equipment</td>
-            <td>exercise.sets</td>
-            <td>exercise.reps</td>
-            <td>exercise.weight</td>
-            <td>exercise.notes</td>
+        {dailyexercises&&dailyexercises.map(exercise => (
+          <tr key={exercise.id}>
+            <td>{exercise.name}</td>
+            <td>{exercise.id}</td>
+            <td>{exercise.target}</td>
+            <td>{exercise.equipment}</td>
+            <td><input className="sets" defaultValue={exercise.sets}/></td>
+            <td><input className="reps" defaultValue={exercise.reps}/></td>
+            <td><input className="weight" defaultValue={exercise.weight}/></td>
+            <td><input className="notes" defaultValue={exercise.notes}/></td>
             <td>
-                <button type="button">Update</button>
+                <button type="button" >Update</button>
 
                 <button type="button">Delete</button>
             </td>
           </tr>
-
+        ))
+        }
       </tbody>
     </table>
   </div>

@@ -8,7 +8,7 @@
     "nodemon": "^2.0.22"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "type": "module"
 }

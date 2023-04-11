@@ -4,7 +4,7 @@ import Exercise from './models/Exercise.js'
 import Favourite from './models/Favourite.js'
 import cors from 'cors';
 
-const DailyWorkoutModel = require("./models/DailyWorkoutModel")
+import DailyWorkoutModel from "./models/DailyWorkoutModel.js"
 
 const app = express();
 
@@ -203,12 +203,20 @@ app.patch('/api/favourites', (req, res) => {
 
 
 //DAILY WORKOUTS
-app.get("/api/dailyexercises", async (req, res) => {
-    const dailyexercises = await DailyWorkoutModel.find().sort({ created: "desc" });
-    return res.json(dailyexercises);
+app.get("/api/dailyexercises", async (req, res, next) => {
+    console.log("szerver GET")
+    try {
+        const dailyexercises = await DailyWorkoutModel.find({});
+        console.log(dailyexercises)
+        return res.json(dailyexercises);
+    }
+    catch (err) {
+        return next(err) 
+    }
 })
 
 app.post("/api/dailyexercises", async (req, res) => {
+    console.log(req.body)
     const newDailyExercise = req.body;
     try {
         const savedDailyExercise = await DailyWorkoutModel.create(newDailyExercise);

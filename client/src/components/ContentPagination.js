@@ -156,6 +156,21 @@ function ContentPagination(props) {
     setOpen(true);
   }
 
+  const handleAddToDailyWorkout = (e) => {
+    //sends a POST to the server
+
+    console.log(e.target.id)
+    let newDailyExercise = items.filter(item => (item.id===e.target.id))
+
+    return fetch("http://localhost:3001/api/dailyexercises", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newDailyExercise),
+    }).then((res) => res.json());
+  }
+
   return (
     
     <div>
@@ -191,6 +206,7 @@ function ContentPagination(props) {
                   <p className="card-text">{item.target}</p>
                   <img alt="gif" src={item.gifUrl}></img>
                   <button className='addFavoriteButton' id={item.id} onClick={(e)=>handleAddToFavourites(e)}>+</button>
+                  <button className='addToDailyWorkout' id={item.id} onClick={(e)=>handleAddToDailyWorkout(e)}>Add to daily workout</button>
                 </div>
   
               </div>

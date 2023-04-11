@@ -1,14 +1,39 @@
 import DailyWorkoutTable from "./DailyWorkoutTable";
+import { useState, useEffect } from "react";
 
-const DailyWorkout = ({showDailyWorkout}) => {
+
+/*
+const fetchDailyExercises = () => {
+    console.log("lefut a get fetch")
+    return fetch("/api/dailyexercises").then((res) => res.json()).catch((err)=>console.log(err));
+};
+*/
+
+
+const DailyWorkout = () => {
 
     //ez felel a működésért
     //a returnben visszatér a DailyWorkoutTable-lel, átadva a propsokat
     
+    const [dailyexercises, setDailyexercises] = useState(null)
+
+    console.log(dailyexercises)
+    
+    useEffect(() => {
+        console.log("ez a useEffect")
+
+        fetch("http://localhost:3001/api/dailyexercises")
+            .then(res => res.json())
+            .then((dailyexercises) => {
+                setDailyexercises(dailyexercises)
+                console.log(dailyexercises)
+            })
+    }, []);
+    
 
     return (
-    <DailyWorkoutTable
-        
+        <DailyWorkoutTable
+            dailyexercises={dailyexercises}
     />
     )
 }

@@ -112,6 +112,7 @@ useEffect(() => {
 
     };
     
+    
     useEffect(() => {
       fetch(`http://localhost:3001/api/favourites`, {
         method: 'PATCH',
@@ -126,6 +127,7 @@ useEffect(() => {
       });
       setSendComment(false)
     }, [sendComment])
+    
     
 
     const handleAddComment = (event) => {
@@ -143,8 +145,8 @@ useEffect(() => {
         event.preventDefault()
         console.log(event)
         console.log(event)
-        setSendComment(true)
         setCommenting(false)
+        setSendComment(true)
         //getFavourites()
     }
 
@@ -225,7 +227,7 @@ useEffect(() => {
                   <button onClick={(e)=>handleBackButton(e)} className="backButton navbarItem"><h2>Home</h2></button>
                 </div>
               </div>
-              <DailyWorkout showDailyWorkout={showDailyWorkout}/>
+              <DailyWorkout/>
             </>
           
           ):(
@@ -236,9 +238,7 @@ useEffect(() => {
                         <a id='Home' className='navbarItem'>Home</a>
                         <a className='navbarItem'>Exercises</a>
                         <button onClick={(e)=>handleShowFavourites(e)} className="favouritesButton navbarItem">Favourites</button>
-                        <Link to={`/dailyworkout`}>
                           <button type="button" onClick={(e)=> handleShowDailyWorkout(e) }>Daily workout planner</button>
-                        </Link>
                     </div>
                 </div>
                 <SearchBar></SearchBar>
