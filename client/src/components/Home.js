@@ -9,6 +9,9 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import './Home.css';
 
+import { Link } from "react-router-dom";
+import DailyWorkout from "./DailyWorkout"
+
 
 function Home(props) {
 
@@ -22,6 +25,8 @@ function Home(props) {
     const [commentingId, setCommentingId] = useState("");
     const [comment, setComment] = useState("");
     const [sendComment, setSendComment] = useState(false);
+
+    const [showDailyWorkout, setShowDailyWorkout] = useState(false);
 
 
      //-------------SnackBar----------------------//
@@ -81,6 +86,7 @@ useEffect(() => {
         event.preventDefault()
         console.log(event)
         setShowFavourites(false)
+        setShowDailyWorkout(false)
     }
 
 
@@ -140,6 +146,12 @@ useEffect(() => {
         setSendComment(true)
         setCommenting(false)
         //getFavourites()
+    }
+
+    const handleShowDailyWorkout = (event) => {
+      event.preventDefault()
+      console.log(event)
+      setShowDailyWorkout(true);
     }
 
     return (
@@ -205,17 +217,33 @@ useEffect(() => {
         </>
         ):
         (
-            
-        <div className='Home'>
-            <div className='NavBar'>
-                <div className='options'>
-                    <a id='Home' className='navbarItem'>Home</a>
-                    <a className='navbarItem'>Exercises</a>
-                    <button onClick={(e)=>handleShowFavourites(e)} className="favouritesButton navbarItem">Favourites</button>
+
+          showDailyWorkout?(
+            <>
+              <div className="NavBar">
+                <div className='homeNavigation'>
+                  <button onClick={(e)=>handleBackButton(e)} className="backButton navbarItem"><h2>Home</h2></button>
                 </div>
+              </div>
+              <DailyWorkout showDailyWorkout={showDailyWorkout}/>
+            </>
+          
+          ):(
+
+              <div className='Home'>
+                <div className='NavBar'>
+                    <div className='options'>
+                        <a id='Home' className='navbarItem'>Home</a>
+                        <a className='navbarItem'>Exercises</a>
+                        <button onClick={(e)=>handleShowFavourites(e)} className="favouritesButton navbarItem">Favourites</button>
+                        <Link to={`/dailyworkout`}>
+                          <button type="button" onClick={(e)=> handleShowDailyWorkout(e) }>Daily workout planner</button>
+                        </Link>
+                    </div>
+                </div>
+                <SearchBar></SearchBar>
             </div>
-            <SearchBar></SearchBar>
-        </div>
+          )
         )   
       
 

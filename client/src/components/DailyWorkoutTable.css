@@ -1,0 +1,19 @@
+.DailyWorkoutTable {
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+    width: fit-content;
+    text-align: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.dailyWorkoutTitle, .date {
+    color: white;
+    font-size: 40px;
+}
+
+.date {
+    color: white;
+    font-size: 30px;
+}
