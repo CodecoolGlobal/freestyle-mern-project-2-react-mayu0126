@@ -1,0 +1,43 @@
+.DailyWorkoutTable {
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+    width: fit-content;
+    padding: 20px;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
+
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    padding: 10px;
+    text-align: center;
+}
+
+.dailyWorkoutTitle, .date {
+    color: white;
+    font-size: 40px;
+}
+
+.date {
+    color: white;
+    font-size: 30px;
+}
+
+.titleAndDate {
+    background-color: #242424;
+    margin: auto;
+    padding: 20px
+}
+
+.sets, .reps, .weight {
+    width: 100px
+}
+
+.notes {
+    width: 200px
+}

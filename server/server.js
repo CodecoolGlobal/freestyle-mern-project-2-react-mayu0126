@@ -3,6 +3,9 @@ import express from 'express';
 import Exercise from './models/Exercise.js'
 import Favourite from './models/Favourite.js'
 import cors from 'cors';
+
+import DailyWorkoutModel from "./models/DailyWorkoutModel.js"
+
 const app = express();
 
 
@@ -197,6 +200,56 @@ app.patch('/api/favourites', (req, res) => {
         .catch(error => {
             console.error(error)})
 });
+
+
+//DAILY WORKOUTS
+app.get("/api/dailyexercises", async (req, res, next) => {
+    console.log("szerver GET")
+    try {
+        const dailyexercises = await DailyWorkoutModel.find({});
+        console.log(dailyexercises)
+        return res.json(dailyexercises);
+    }
+    catch (err) {
+        return next(err) 
+    }
+})
+
+app.post("/api/dailyexercises", async (req, res) => {
+    console.log(req.body)
+    const newDailyExercise = req.body;
+    try {
+        const savedDailyExercise = await DailyWorkoutModel.create(newDailyExercise);
+        return res.json(savedDailyExercise);
+      } catch (err) {
+        return next(err);
+      }
+})
+
+app.delete("/api/dailyexercises", async (req, res, next) => {
+    try {
+        const dailyexercise = await DailyWorkoutModel.findById(req.params.id);
+        const deleted = await dailyexercise.delete();
+        return res.json(deleted);
+      } catch (err) {
+        return next(err);
+      }
+})
+
+app.patch("/api/dailyexercises", async (req, res, next) => {
+    try {
+      const dailyexercise = await DailyWorkoutModel.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: { ...req.body } },
+        { new: true }
+      );
+      return res.json(dailyexercise);
+    } catch (err) {
+      return next(err);
+    }
+  });
+
+
 
 
 app.listen(3001, () => console.log('Server started on port 3001'));

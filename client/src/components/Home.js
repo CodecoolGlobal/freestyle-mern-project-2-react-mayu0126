@@ -9,6 +9,8 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import './Home.css';
 
+import { Link } from "react-router-dom";
+import DailyWorkout from "./DailyWorkout"
 
 function Home(props) {
 
@@ -23,6 +25,8 @@ function Home(props) {
   const [comment, setComment] = useState("");
   const [sendComment, setSendComment] = useState(false);
 
+  const [showDailyWorkout, setShowDailyWorkout] = useState(false);
+
   const [showBMI, setShowBMI] = useState(false);
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('male');
@@ -30,7 +34,6 @@ function Home(props) {
   const [weight, setWeight] = useState('');
   const [bmi, setBmi] = useState('');
   const [bmiClass, setBmiClass] = useState('');
-  const [bmiTip, setBmiTip] = useState('asd');
 
 
   //-------------SnackBar----------------------//
@@ -62,6 +65,7 @@ function Home(props) {
   useEffect(() => {
     fetch("http://localhost:3001/api/favourites")
       .then(res => res.json())
+      //.then(data => console.log(data))
       .then(data => setMyFavourites(data))
     setDeleting(undefined)
   }, [showFavourites, sendComment, deleting])
@@ -92,11 +96,11 @@ function Home(props) {
 
     console.log(myFavourites)
   }
-
   const handleBackButton = (event) => {
     event.preventDefault()
     console.log(event)
     setShowFavourites(false)
+    setShowDailyWorkout(false)
     setShowBMI(false)
   }
 
@@ -156,6 +160,12 @@ function Home(props) {
     console.log(event)
     setSendComment(true)
     setCommenting(false)
+    //getFavourites()
+  }
+  const handleShowDailyWorkout = (event) => {
+    event.preventDefault()
+    console.log(event)
+    setShowDailyWorkout(true);
   }
 
   function capitalizeWords(str) {
@@ -189,7 +199,6 @@ function Home(props) {
     setBmiClass('');
   };
 
-
   return (
     <>
       {showBMI ? (
@@ -206,7 +215,7 @@ function Home(props) {
               <div>
                 <label htmlFor="age">Age: </label>
                 <input id="age" type="number" value={age} onChange={(e) => setAge(e.target.value)} />
-                
+
                 <label htmlFor="gender">Gender: </label>
                 <select id="gender" value={gender} onChange={(e) => setGender(e.target.value)}>
                   <option value="male">Male</option>
@@ -297,6 +306,16 @@ function Home(props) {
           </div>
 
         </>
+      ) : (showDailyWorkout ? (
+        <>
+          <div className="NavBar">
+            <div className='homeNavigation'>
+              <button onClick={(e) => handleBackButton(e)} className="backButton navbarItem"><h2>Home</h2></button>
+            </div>
+          </div>
+          <DailyWorkout />
+        </>
+
       ) : (
         <div className='Home'>
           <div className='NavBar'>
@@ -304,11 +323,12 @@ function Home(props) {
               <h2 id='Home' className='navbarItem'>Home</h2>
               <h2 onClick={(e) => handleBMICalculator(e)} className='navbarItem'>BMI Calculator</h2>
               <h2 onClick={(e) => handleShowFavourites(e)} className="favouritesButton navbarItem">Favourites</h2>
+              <button type="button" onClick={(e) => handleShowDailyWorkout(e)}>Daily workout planner</button>
             </div>
           </div>
           <SearchBar></SearchBar>
         </div>
-      )
+      ))
       }
     </>
   );
