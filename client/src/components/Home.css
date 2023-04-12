@@ -89,6 +89,7 @@ h2{
 
 .backButton {
   background-color: transparent;
+  cursor: pointer;
   color: white;
   border: none;
   outline: none;
@@ -111,6 +112,7 @@ h2{
   color: white;
   border: none;
   outline: none;
+  cursor: pointer;
   text-decoration: none;
 }
 
@@ -139,6 +141,7 @@ h2{
 .removeFavorites, .addFavoriteButton {
   position: absolute; 
   bottom: 0;
+  cursor: pointer;
   margin:auto;
   margin-bottom: 20px;
   margin-left: 100px;
@@ -146,6 +149,7 @@ h2{
 
 .navbarItem{
   position: relative;
+  cursor: pointer;
 }
 
 .navbarItem::after{
@@ -231,4 +235,47 @@ h2{
 
 .addCommentButton {
   height: 30px;
+}
+
+.bmi-calculator {
+  color: #ecf0f1;
+}
+
+.bmi-body {
+  /* background-color: #4158D0;
+background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); */
+  user-select: none;
+  max-width: 400px;
+  margin: 5rem auto;
+  border: 1px solid #ffffff22;
+  background-color: #282c34;
+  background: linear-gradient(0deg, #282c34 0%, rgba(17, 0, 32, 0.5) 100%);
+  box-shadow: 0 7px 20px 5px #00000088;
+  border-radius: 0.7rem;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  overflow: hidden;
+  transition: 0.5s all;
+  color: white;
+}
+
+.bmi-body ::before {
+  position: fixed;
+  content: "";
+  box-shadow: 0 0 100px 40px #ffffff08;
+  top: -10%;
+  left: -100%;
+  transform: rotate(-45deg);
+  height: 60rem;
+  transition: 0.7s all;
+}
+
+.bmi-body:hover {
+  border: 1px solid #ffffff44;
+  box-shadow: 0 7px 50px 10px #000000aa;
+}
+
+.bmi-body:hover ::before {
+  top: -100%;
+  left: 200%;
 }

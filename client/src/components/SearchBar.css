@@ -4,6 +4,7 @@
 }
 
 .searchButton {
+  cursor: pointer;
   padding: 0.3rem 0.25rem;
   line-height: 1.25;
   color: #007bff;

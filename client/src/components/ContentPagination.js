@@ -129,6 +129,12 @@ function ContentPagination(props) {
     setItems(dataFromServer)
   }
 
+  function capitalizeWords(str) {
+    return str.replace(/\b\w/g, function(txt) {
+      return txt.toUpperCase();
+    });
+  }
+
   const handleAddToFavourites = (event) => {
     event.preventDefault();
     console.log(event);
@@ -184,11 +190,10 @@ function ContentPagination(props) {
             <div key={item.id} className="col-sm-6 col-md-auto mr-auto ml-auto v my-3 ">
               <div id="exerciseCard" className="card shadow-sm w-100" style={{ minHeight: 225 }}>
                 <div className="card-body">
-                  <h5 className="card-title text-center h2">Id :{item.id} </h5>
                   <h6 className="card-subtitle mb-2 text-muted text-center">
-                    {item.name}
+                    {capitalizeWords(item.name)}
                   </h6>
-                  <p className="card-text">{item.target}</p>
+                  <p className="card-text">{capitalizeWords(item.target)}</p>
                   <img alt="gif" src={item.gifUrl}></img>
                   <button className='addFavoriteButton' id={item.id} onClick={(e)=>handleAddToFavourites(e)}>+</button>
                 </div>
