@@ -9,7 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import './Home.css';
 
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import DailyWorkout from "./DailyWorkout"
 
 function Home(props) {
