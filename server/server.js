@@ -175,10 +175,10 @@ app.get('/api/favourites', (req, res) => {
         .catch(err => res.status(400).json({ success: false }));
 })
 
-app.delete('/api/favourites', (req, res) => {
+app.delete('/api/favourites/:id', (req, res) => {
     console.log("a szerver favourites delete requestjében vagyunk");
 
-    Favourite.deleteOne({ id: req.body.deleteId })
+    Favourite.deleteOne({ id: req.params.id })
         .then(deletedFavourite => console.log(deletedFavourite))
         .catch(err => res.status(400).json({ success: false }));
 

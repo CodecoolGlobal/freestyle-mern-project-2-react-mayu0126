@@ -68,7 +68,7 @@ function Home(props) {
       .then(res => res.json())
       //.then(data => console.log(data))
       .then(data => setMyFavourites(data))
-    setDeleting(undefined)
+    setDeleting(false)
   }, [showFavourites, sendComment, deleting])
 
 
@@ -109,19 +109,13 @@ function Home(props) {
   const handleRemoveFromFavourites = (event) => {
     event.preventDefault();
     console.log(event);
+    console.log(event.target.id)
+
     setDeleting(true)
 
     //id elküldése a szervernek, ő kikeresi az adatbázisból az objectet és deleteli a favourites collectionből
-    fetch(`http://localhost:3001/api/favourites`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(
-        { "deleteId": event.target.id },
-        console.log("működik a delete from favourites fetch"),
-        console.log({ "deleteId": event.target.id })
-      )
+    fetch(`http://localhost:3001/api/favourites/${event.target.id}`, {
+      method: 'DELETE'
     });
     //getFavourites()
     setOpen(true);

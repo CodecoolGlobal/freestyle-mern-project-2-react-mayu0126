@@ -46,9 +46,11 @@ th {
 
 .sets, .reps, .weight {
     width: 60px;
+    text-align: center;
 }
 .notes {
-    width: 250px
+    width: 250px;
+    text-align: center;
 }
 
 
@@ -67,7 +69,7 @@ th {
     width: 250px;
 }
 .thId, .thTarget, .thEquipment {
-    width: 150px;
+    width: 140px;
 }
 .thSets, .thReps, .thWeight {
     width: 80px;
@@ -77,6 +79,18 @@ th {
 }
 
 
-.updateExercise, .deleteExercise {
+.updateExercise {
     margin: 5px;
+    color: #fff;
+    background-color: #402263;
+    border-radius: 50px;
+    width: 80px;
+}
+
+.deleteExercise {
+    margin: 5px;
+    color: #fff;
+    background-color: #242424;
+    border-radius: 50px;
+    width: 30px;
 }

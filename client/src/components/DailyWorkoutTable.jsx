@@ -51,7 +51,7 @@ const DailyWorkoutTable = ({ dailyexercises, onDelete, onUpdate }) => {
                 <tbody>
 
                   <tr key={exercise.id}>
-                    <td><div className="exercisename">{exercise.name}</div></td>
+                    <td className="exercisename">{exercise.name.toUpperCase()}</td>
                     <td className="exerciseid">{exercise.id}</td>
                     <td className="exercisetarget">{exercise.target}</td>
                     <td className="exerciseequipment">{exercise.equipment}</td>
@@ -84,9 +84,9 @@ const DailyWorkoutTable = ({ dailyexercises, onDelete, onUpdate }) => {
                       />
                     </td>
                     <td>
-                      <button className="updateExercise" type="submit">Update</button>
+                      <button className="updateExercise" type="submit">UPDATE</button>
                       <button className="deleteExercise" type="button" onClick={() => onDelete(exercise._id)}>
-                        Delete
+                        X
                       </button>
                     </td>
                   </tr>
