@@ -226,17 +226,20 @@ app.post("/api/dailyexercises", async (req, res) => {
       }
 })
 
-app.delete("/api/dailyexercises", async (req, res, next) => {
+app.delete("/api/dailyexercises/:id", async (req, res, next) => {
+    console.log("SERVER EXERCISE DELETE")
+    console.log(req.params.id)
     try {
         const dailyexercise = await DailyWorkoutModel.findById(req.params.id);
-        const deleted = await dailyexercise.delete();
+        const deleted = await dailyexercise.deleteOne();
         return res.json(deleted);
       } catch (err) {
         return next(err);
       }
 })
 
-app.patch("/api/dailyexercises", async (req, res, next) => {
+app.patch("/api/dailyexercises/:id", async (req, res, next) => {
+    console.log("SERVER EXERCISE PATCH")
     try {
       const dailyexercise = await DailyWorkoutModel.findOneAndUpdate(
         { _id: req.params.id },

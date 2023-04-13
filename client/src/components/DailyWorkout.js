@@ -2,12 +2,26 @@ import DailyWorkoutTable from "./DailyWorkoutTable";
 import { useState, useEffect } from "react";
 
 
-/*
-const fetchDailyExercises = () => {
-    console.log("lefut a get fetch")
-    return fetch("/api/dailyexercises").then((res) => res.json()).catch((err)=>console.log(err));
-};
-*/
+const updateDailyExercise = (dailyExercise, _id) => {
+    console.log(dailyExercise)
+    console.log("CLIENT EXERCISE PATCH")
+    return fetch(`http://localhost:3001/api/dailyexercises/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dailyExercise),
+    }).then((res) => res.json());
+  };
+
+  const deleteDailyExercise = (_id) => {
+    console.log(_id)
+    console.log("CLIENT DELETE EXERCISE")
+    return fetch(`http://localhost:3001/api/dailyexercises/${_id}`, {
+      method: "DELETE",
+    }).then((res) => res.json());
+  };
+
 
 
 const DailyWorkout = () => {
@@ -17,7 +31,7 @@ const DailyWorkout = () => {
     
     const [dailyexercises, setDailyexercises] = useState(null)
 
-    console.log(dailyexercises)
+    //console.log(dailyexercises)
     
     useEffect(() => {
         console.log("ez a useEffect")
@@ -29,11 +43,27 @@ const DailyWorkout = () => {
                 console.log(dailyexercises)
             })
     }, []);
-    
 
+    const handleDelete = (_id) => {
+        console.log(_id)
+        console.log("handledelete")
+        deleteDailyExercise(_id)
+
+        setDailyexercises((dailyexercises) => {
+            return dailyexercises.filter((dailyexercise) => dailyexercise._id !== _id);
+          })
+    }
+    
+    const handleUpdate = (dailyExercise, id) => {
+        console.log(dailyExercise, id)
+        updateDailyExercise(dailyExercise, id)
+    }
+    
     return (
         <DailyWorkoutTable
             dailyexercises={dailyexercises}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
     />
     )
 }
