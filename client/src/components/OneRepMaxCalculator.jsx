@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 function OneRepMaxCalculator(props) {
 
     function calculate1RM(weight, reps) {
-        const exercise = document.querySelector('input[name="exercise"]:checked').value;
         return Math.round(weight * (1 + reps / 30));
     }
     const [isChecked, setIsChecked] = useState('')
@@ -44,7 +43,7 @@ function OneRepMaxCalculator(props) {
         <div >
             <div className='NavBar'>
                 <div className='options'>
-                    <a >  <Link to="/">Home</Link></a>
+                    <a> <Link to="/">Home</Link></a>
                 </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
