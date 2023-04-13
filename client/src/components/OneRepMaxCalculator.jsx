@@ -43,7 +43,7 @@ function OneRepMaxCalculator(props) {
         <div >
             <div className='NavBar'>
                 <div className='options'>
-                    <a> <Link to="/">Home</Link></a>
+                    <Link to="/">Home</Link>
                 </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
