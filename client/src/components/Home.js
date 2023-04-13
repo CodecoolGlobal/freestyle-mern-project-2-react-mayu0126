@@ -11,6 +11,7 @@ import './Home.css';
 
 //import { Link } from "react-router-dom";
 import DailyWorkout from "./DailyWorkout"
+import { Link } from 'react-router-dom';
 
 function Home(props) {
 
@@ -323,7 +324,8 @@ function Home(props) {
               <h2 id='Home' className='navbarItem'>Home</h2>
               <h2 onClick={(e) => handleBMICalculator(e)} className='navbarItem'>BMI Calculator</h2>
               <h2 onClick={(e) => handleShowFavourites(e)} className="favouritesButton navbarItem">Favourites</h2>
-              <button type="button" onClick={(e) => handleShowDailyWorkout(e)}>Daily workout planner</button>
+              <Link className='navbarItem' to="/onerepmax"><h2 className='navbarItem'>1RM calculator</h2></Link>
+              <h2 type="button" className='navbarItem' onClick={(e) => handleShowDailyWorkout(e)}>Daily workout planner</h2>
             </div>
           </div>
           <SearchBar></SearchBar>
